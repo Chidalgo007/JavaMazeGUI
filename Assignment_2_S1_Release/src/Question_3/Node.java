@@ -5,10 +5,34 @@
  */
 package Question_3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author xhu
  */
-public class Node {
+public class Node implements Comparable<Node> {
 
+    String key;// name
+    int x;// possition columns
+    int y;// possition rows
+    String linkA;
+    String linkB;
+    List<Node> children;
+    boolean visited = false;
+
+    public Node(String key, int x, int y, String linkA, String linkB) {
+        this.key = key;
+        this.x = x;
+        this.y = y;
+        this.linkA = linkA;
+        this.linkB = linkB;
+        this.children = new ArrayList<>();
+    }
+
+    @Override
+    public int compareTo(Node t) {
+        return key.compareTo(t.key);
+    }
 }

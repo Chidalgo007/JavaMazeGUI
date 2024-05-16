@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Question_3_Mine;
+package Question_3;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class MazeTree {
 
     Node root;
-    Map<String, Node> nodesMap = new HashMap<>();
+    Map<String, Node> nodesMap = new LinkedHashMap<>();
     int num;
 
     public MazeTree() {
@@ -84,5 +84,4 @@ public class MazeTree {
             traverse(root);
         }
     }
-
 }
