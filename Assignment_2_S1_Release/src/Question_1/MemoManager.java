@@ -5,11 +5,9 @@
  */
 package Question_1;
 
-import java.util.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,9 +36,13 @@ public class MemoManager<E extends Comparable> {
             memo.message = message;
         } catch (ParseException ex) {
             Logger.getLogger(MemoManager.class.getName()).log(Level.SEVERE, null, ex);
+            return;
         }
+ 
         addToTree(memo, (E) memo.date);
         addToTree(memo, (E) memo.title);
+            System.out.println("Added memo: " + memo.date + ", " + memo.title + ", " + memo.message);
+
     }
 
     public void addToTree(Memo memo, E key) {
@@ -55,9 +57,10 @@ public class MemoManager<E extends Comparable> {
     public Memo findMemo(E key) {
         if (key instanceof Date) {
             return (Memo) bTreeDate.searchElement(key);
-        } else {
+        } else if (key instanceof String) {
             return (Memo) bTreeTitle.searchElement(key);
         }
+        return null;
     }
 
     public Memo[] getSortedMemoList(E key) {
@@ -68,12 +71,18 @@ public class MemoManager<E extends Comparable> {
             sortedNodes = bTreeTitle.toSortedList();
         }
 
-        List<Memo> memoList = new ArrayList<>();
-        for (Node<Memo, E> node : sortedNodes) {
-            memoList.add(node.element);
+        Memo[] memoArray = new Memo[sortedNodes.length];
+        for (int i = 0; i < sortedNodes.length; i++) {
+            memoArray[i] = (Memo) sortedNodes[i].element;
         }
-        Memo[] memoArray = new Memo[memoList.size()];
-        return memoList.toArray(memoArray);
+        return memoArray;
+
+//        List<Memo> memoList = new ArrayList<>();
+//        for (Node<Memo, E> node : sortedNodes) {
+//            memoList.add(node.element);
+//        }
+//        Memo[] memoArray = new Memo[memoList.size()];
+//        return memoList.toArray(memoArray);
     }
 
     public void reverseOrder() {
