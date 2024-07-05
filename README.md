@@ -1,3 +1,6 @@
+Download the JAR FILE folder which contain the necesary files for the following projects.
+<hr>
+
 For a recent university assignment, I developed a maze and implemented an algorithm to find the shortest path from the entrance to the exit. </br>
 This project involved using nodes and the Depth-First Search (DFS) algorithm to efficiently navigate through the maze. </br>
 
